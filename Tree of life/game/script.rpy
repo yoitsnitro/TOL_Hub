@@ -55,18 +55,30 @@ define config.default_music_volume = 0.7
 define config.default_sfx_volume = 0.7
 define config.default_voice_volume = 0.7
 
-define bad_words = ["fuck", "shit", "bitch", "asshole", "cunt", "bastard", "dick", "slut", "faggot"]
+define bad_words = ["fuck", "shit", "bitch", "asshole", "cunt", "bastard", "dick", "slut", "faggot", "ligma", "cum", "pussy", "stupid", "idiot",]
 
 # Start of the game
 label start:
 
     play music "audio/Echoes.wav" loop fadein 1.5
 
-    
-    $ player_name = renpy.input("What's your name?").strip()
+    $ player_name = ""
+    $ attempts = 0
+    $ valid_name = False
 
-    while player_name.lower() in bad_words or player_name == "":
-        $ player_name = renpy.input("Please choose a different name.").strip()
+    while not valid_name:
+        $ player_name = renpy.input("What's your name?").strip()
+        $ attempts += 1
+
+        if any(bad_word in player_name.lower() for bad_word in bad_words) or player_name == "":
+            if attempts >= 3:
+                $ player_name = "Basic Player"
+                "Fine. We'll call you [player_name]."
+                $ valid_name = True
+            else:
+                "Be serious here, what is your name?"
+        else:
+            $ valid_name = True
 
     $ player = Character("[player_name]", color="#a0e7e5")
 
