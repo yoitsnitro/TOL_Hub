@@ -351,7 +351,7 @@ screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
     tag menu
-
+    on "show" action Play("music", "audio/Echoes.wav", loop=True)
     add gui.main_menu_background
 
     ## This empty frame darkens the main menu.

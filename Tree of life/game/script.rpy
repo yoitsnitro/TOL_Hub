@@ -49,20 +49,35 @@ image bg salon night = "images/Backgrounds/bg_salon 3.png"
 image bg bunker = "images/Backgrounds/bg_bunker.jpg"
 image bg empty school = "images/Backgrounds/bg_emptyschool.png"
 
+#Music
+
+define config.default_music_volume = 0.7
+define config.default_sfx_volume = 0.7
+define config.default_voice_volume = 0.7
+
+
+
 # Start of the game
 label start:
+
+    play music "audio/Echoes.wav" loop fadein 1.5
 
     scene bg white
     with fade
 
     show nitro thinking at center
+    with dissolve
+
     n "Alright... this is it."
 
     scene bg studio
-    with dissolve
+    with fade
 
     show nitro neutral at center
+    with dissolve
+
     n "Welcome to the Tree of Life project."
+    n "This is a tech demo to showcase the start of our visual novel."
 
     show nitro talk at center
     n "I'm Nitro — the producer, director, and one of the writers."
@@ -77,13 +92,13 @@ label start:
     i "Hey! I'm Isabella, co-producer and rigger. I make sure our characters don’t fall apart."
 
     show isabella serious
-    i "Unless Max hands me another 80-joint tentacle rig related to a cosmic horror since lamby exsists in our DND campaign..."
+    i "Unless Max hands me another 80-joint tentacle rig related to a cosmic horror since lamby exists in our DND campaign..."
 
     hide isabella
 
     # Peter
     show peter neutral at center
-    p "Peter here. I’m the co-writer. My job? Kick ass and eat bubblegum and Help make sense of Nitro’s madness."
+    p "Peter here. I’m the co-writer. My job? Kick ass and eat bubblegum and help make sense of Nitro’s madness."
 
     show peter concerned
     p "Seriously though, the lore is getting bloody deep."
@@ -92,7 +107,7 @@ label start:
 
     # Max
     show max grin at left
-    m "Max, reporting in. I storyboard the project faster then (Insert Actors reccomendation here). You want angles?, Eye of a Beholder, a rad soundtrack giving Disco Elysium? I got you."
+    m "Max, reporting in. I storyboard the project faster than (Insert Actor's recommendation here). You want angles? Eye of a Beholder, a rad soundtrack giving Disco Elysium? I got you."
 
     show max sketching
     m "Unless you change the script again. Please. Stop."
@@ -104,7 +119,7 @@ label start:
     s "Hi! I’m Serena, the animator. I bring the sketches to life."
 
     show serena focused
-    s "Also: I may not sleep until this opening sequence is done as I dont want the team to abandon me."
+    s "Also: I may not sleep until this opening sequence is done as I don’t want the team to abandon me."
 
     hide serena
 
@@ -113,13 +128,13 @@ label start:
     y "Hi I build everything. Props, characters, sets... and even the glitchy vending machine."
 
     show yong shrug
-    y "Maya and I are in a love-hate relationship, and dont ask me whether Mari or substance I'm still getting over it."
+    y "Maya and I are in a love-hate relationship, and don’t ask me whether Mari or Substance — I'm still getting over it."
 
     hide yong
 
     # Jordan
     show jordan chill at right
-    j " Well Im a lighter but I also can code, troubleshoot, I cry in Python."
+    j "Well I’m a lighter but I also can code, troubleshoot, I cry in Python."
 
     show jordan intense
     j "Also… if it’s broken, it probably worked before you touched it."
@@ -132,7 +147,7 @@ label start:
 
     n "And together, we’re building something special."
 
-    n "Hopefully we’ll expand the art team soon, Hopefully showing this tech demo can help explain the process easier to Sarah and Charlotte, And would love to have Daniel hop onboard story unless we find a way to involve Houdini."
+    n "Hopefully we’ll expand the art team soon, Hopefully showing this tech demo can help explain the process easier to Sarah and Charlotte, and would love to have Daniel hop onboard story unless we find a way to involve Houdini."
 
     # Cycle through Salon background times
     scene bg salon morning
@@ -142,22 +157,34 @@ label start:
 
     scene bg salon midday
     with dissolve
-    n "from characters, transitions, expressions, scenes even day to night cycles, Though just ignore the time here couldnt find a midday image :P."
+    n "From characters, transitions, expressions, scenes even day to night cycles — though just ignore the time here, couldn’t find a midday image :P."
 
     scene bg salon night
     with dissolve
-    n "At night? well we are all active at night playing league of Legneds, watching anime, and most of our crew have DND Nights."
+    n "At night? Well, we are all active at night playing League of Legends, watching anime, and most of our crew have DND nights."
 
-    # Optional dark/whisper scenes
+    # Bunker scene with new music
     scene bg bunker
     show nitro neutral at center
     with fade
-    n "and of course dont forget this game will have a ton of secrets Military Thriller, Medical Thriller and Psychological Thriller, so this project aims to go dark and to evoke emotions and pull reactions out of the player."
 
+    play music "audio/Nomad.wav" loop fadein 0.2
+
+    n "And of course, don’t forget this game will have a ton of secrets — military thriller, medical thriller, and psychological thriller. So this project aims to go dark and to evoke emotions and pull reactions out of the player."
+
+    # Whisper scene
     scene bg empty school
     show nitro thinking at center
     with dissolve
-    n "{font=fonts/whisper.ttf}...and we can whisper secrets to not get caught and die this was a great way to learn how fonts work.{/font}"
+
+    stop music fadeout 1.0
+    play music "audio/whispers.wav"
+
+    n "{font=fonts/whisper.ttf}...and we can whisper secrets to not get caught and die — this was a great way to learn how fonts work.{/font}"
+
+    stop sound
+    $ renpy.pause(0.5)  # Optional: smooth audio transition
+    play music "audio/Echoes.wav" loop fadein 2.0
 
     # Player choice
     menu:
