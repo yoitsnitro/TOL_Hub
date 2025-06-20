@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 65: Line is indented, but the preceding play music statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    scene bg white
+File "game/script.rpy", line 74: Line is indented, but the preceding scene statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    with fade
     ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Fri Jun 20 14:26:23 2025
+Fri Jun 20 15:45:49 2025

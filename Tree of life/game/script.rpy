@@ -55,12 +55,20 @@ define config.default_music_volume = 0.7
 define config.default_sfx_volume = 0.7
 define config.default_voice_volume = 0.7
 
-
+define bad_words = ["fuck", "shit", "bitch", "asshole", "cunt", "bastard", "dick", "slut", "faggot"]
 
 # Start of the game
 label start:
 
     play music "audio/Echoes.wav" loop fadein 1.5
+
+    
+    $ player_name = renpy.input("What's your name?").strip()
+
+    while player_name.lower() in bad_words or player_name == "":
+        $ player_name = renpy.input("Please choose a different name.").strip()
+
+    $ player = Character("[player_name]", color="#a0e7e5")
 
     scene bg white
     with fade
@@ -76,7 +84,7 @@ label start:
     show nitro neutral at center
     with dissolve
 
-    n "Welcome to the Tree of Life project."
+    n "Welcome to the Tree of Life project [player_name]."
     n "This is a tech demo to showcase the start of our visual novel."
 
     show nitro talk at center
